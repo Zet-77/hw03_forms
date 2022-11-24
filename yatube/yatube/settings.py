@@ -1,7 +1,6 @@
 
 
 import os
-from re import T
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -106,9 +105,7 @@ LIMIT = 10
 
 LOGIN_URL = 'users:login'
 LOGIN_REDIRECT_URL = 'posts:index'
-#LOGAUT_REDIRECT_URL = 'posts:index'
+"#LOGAUT_REDIRECT_URL = 'posts:index'"
 
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails') 
-
-
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
