@@ -27,8 +27,7 @@
           <form method="post"
             {% if action_url %}
               action="{% url action_url %}"
-            {% endif %}
-          >
+            {% endif %}>
           {% csrf_token %}
           
           {% for field in form %}
@@ -37,8 +36,7 @@
                 aria-required="true"
               {% else %}
                 aria-required="false"
-              {% endif %}
-            >
+              {% endif %}>
               <label for="{{ field.id_for_label }}">
                 {{ field.label }}
                   {% if field.field.required %}
@@ -46,7 +44,7 @@
                   {% endif %}
               </label>
               <div>
-              {{ field|addclass:'form-control' }}
+                {{ field|addclass:'form-control' }}
                 {% if field.help_text %}
                   <small id="{{ field.id_for_label }}-help" class="form-text-muted">
                     {{ field.help_text|safe }}
