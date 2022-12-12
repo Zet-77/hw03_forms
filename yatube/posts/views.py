@@ -1,10 +1,10 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
 
 from .models import Group, Post, User
 from .forms import PostForm
 from .utils import get_pagin
+
 
 def index(request):
     context = get_pagin(Post.objects.all(), request)
@@ -41,7 +41,6 @@ def post_detail(request, post_id):
 
 @login_required
 def post_create(request):
-    is_edit = False
     form = PostForm(request.POST or None)
     context = {
         'form': form
