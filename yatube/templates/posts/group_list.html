@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block title %} Записи сообщества; {{ group.title }}{% endblock %}
+{% block title %} Записи сообщества; {{ group }} {% endblock %}
 {% block content %}
   <div class="container py-5">
     <h1>{{ group.title }}</h1>
     <p>
-      Записи сообщества; {{ group.description|linebreaks }}<hr>
+      <h4>Записи сообщества; {{ group.description|linebreaks }}</h4><hr>
     </p>
     {% for post in page_obj %}
       <article>
@@ -15,12 +15,16 @@
           <li>
             Дата публикации: {{ post.pub_date|date:"d E Y" }}
           </li>
-        </ul>      
-      <p>
-        {{ post.text|linebreaks }}
-      </p>
+        </ul>
+        <ul>
+          <li>
+              Текст поста:<br>
+              {{ post.text|linebreaks }}
+          </li>
+        </ul>    
+        {% include 'includes/post_card.html' %} 
         {% if not forloop.last %}<hr>{% endif %}
-      </article>  
+      </article> 
     {% endfor %}
     {% include 'includes/paginator.html' %}
     <hr>
