@@ -7,27 +7,33 @@ from .utils import get_pagin
 
 
 def index(request):
-    context = get_pagin(Post.objects.all(), request)
+    post_list = Post.objects.select_related('author')
+    page_obj = get_pagin(post_list, request)
+    context = {
+        'page_obj': page_obj,
+    } 
     return render(request, 'posts/index.html', context)
 
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    post_list = group.posts.all()
+    post_list = group.posts.select_related('group')
+    page_obj = get_pagin(post_list, request)
     context = {
         'group': group,
-        'post_list': post_list
+        'page_obj': page_obj
     }
-    context.update(get_pagin(group.posts.all(), request))
     return render(request, 'posts/group_list.html', context)
 
 
 def profile(request, username):
     author = get_object_or_404(User, username=username)
+    user_posts = author.posts.select_related('author')
+    page_obj = get_pagin(user_posts, request)
     context = {
         'author': author,
+        'page_obj': page_obj
     }
-    context.update(get_pagin(author.posts.all(), request))
     return render(request, 'posts/profile.html', context)
 
 

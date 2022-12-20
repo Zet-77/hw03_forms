@@ -2,28 +2,13 @@
 {% block title %}Последние обновления на сайте{% endblock %}
 {% block content %}
   <div class="container py-5">
-    {% include 'includes/paginator.html' %}
+    {% include 'posts/includes/paginator.html' %}
     <h2>Главная страница</h2>
     {% for post in page_obj %}
-    <article>
-      <ul>
-        <li>
-          Автор: {{ post.author }}
-        </li>
-        <li>
-          Дата публикации: {{ post.pub_date|date:"d E Y" }}
-        </li>
-      </ul>      
-      <p>
-        {{ post.text|linebreaks }}
-      </p>
-      {% if post.group %}
-      {% include 'includes/post_card.html' %}  
-      {% if not forloop.last %}<hr>{% endif %}
-      {% endif %}  
-    </article>  
+      {% include 'posts/includes/post_card.html' %}  
+      {% if not forloop.last %}<hr>{% endif %}  
     {% endfor %}
-    {% include 'includes/paginator.html' %}
+    {% include 'posts/includes/paginator.html' %}
     <hr>
   </div> 
 {% endblock %}
