@@ -11,7 +11,7 @@ def index(request):
     page_obj = get_pagin(post_list, request)
     context = {
         'page_obj': page_obj,
-    } 
+    }
     return render(request, 'posts/index.html', context)
 
 
