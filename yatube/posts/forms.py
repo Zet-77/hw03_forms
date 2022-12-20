@@ -15,4 +15,3 @@ class PostForm(forms.ModelForm):
             'text': 'Текст поста',
             'group': 'Группа'
         }
-        
