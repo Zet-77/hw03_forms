@@ -7,7 +7,7 @@ from .utils import get_pagin
 
 
 def index(request):
-    post_list = Post.objects.select_related('author')
+    post_list = Post.objects.select_related('author', 'group')
     page_obj = get_pagin(post_list, request)
     context = {
         'page_obj': page_obj,
@@ -17,7 +17,7 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    post_list = group.posts.select_related('group')
+    post_list = group.posts.select_related('author')
     page_obj = get_pagin(post_list, request)
     context = {
         'group': group,
@@ -28,7 +28,7 @@ def group_posts(request, slug):
 
 def profile(request, username):
     author = get_object_or_404(User, username=username)
-    user_posts = author.posts.select_related('author')
+    user_posts = author.posts.select_related('group')
     page_obj = get_pagin(user_posts, request)
     context = {
         'author': author,

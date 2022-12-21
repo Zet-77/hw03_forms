@@ -7,7 +7,7 @@
       <h4>Записи сообщества; {{ group.description|linebreaks }}</h4><hr>
     </p>
     {% for post in page_obj %}
-    {% include 'posts/includes/post_card.html' with show_group_list=True %} 
+      {% include 'posts/includes/post_card.html' with show_group_list=True %} 
       {% if not forloop.last %}<hr>{% endif %}
     {% endfor %}
     {% include 'posts/includes/paginator.html' %}
