@@ -11,10 +11,10 @@
         Текст:
         <p>{{ post.text|linebreaksbr }}</p>
       </li> 
-          {% if not show_profile %} 
-          <li>  
+      {% if not show_profile %} 
+        <li>  
           <a href="{% url 'posts:profile' post.author %}"> Все посты пользователя </a>
-          </li>
+        </li>
       {% endif %}
       <li>
         <a href="{% url 'posts:post_detail' post.id %}">Подробная информация</a>
