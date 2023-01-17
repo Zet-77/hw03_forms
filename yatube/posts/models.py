@@ -14,7 +14,7 @@ class Group(models.Model):
         max_length=200, unique=True,
         db_index=True, verbose_name='slug'
     )
-    description = models.TextField(
+    description = models.TextField( 
         verbose_name='Описание'
     )
 
@@ -50,4 +50,4 @@ class Post(models.Model):
         verbose_name_plural = 'Посты'
 
     def __str__(self):
-        return self.text[:30]
+        return self.text[:15]
