@@ -21,7 +21,7 @@ def group_posts(request, slug):
     page_obj = get_pagin(post_list, request)
     context = {
         'group': group,
-        'page_obj': page_obj
+        'page_obj': page_obj,
     }
     return render(request, 'posts/group_list.html', context)
 
@@ -47,7 +47,9 @@ def post_detail(request, post_id):
 
 @login_required
 def post_create(request):
-    form = PostForm(request.POST or None)
+    form = PostForm(request.POST or None,
+        files=request.FILES or None,
+    )
     context = {
         'form': form
     }
@@ -64,7 +66,11 @@ def post_edit(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     if post.author != request.user:
         return redirect('posts:post_detail', post.pk)
-    form = PostForm(request.POST or None, instance=post)
+    form = PostForm(
+        request.POST or None,
+        files=request.FILES or None,
+        instance=post
+    )
     if form.is_valid():
         form.save()
         return redirect('posts:post_detail', post.pk)

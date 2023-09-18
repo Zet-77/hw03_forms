@@ -16,13 +16,13 @@
               Редактируемый пост
             {% else %}
               Новый пост
-            {% endif %}                 
+            {% endif %}  
           </div>
           <div class="card-body">
-            {% include 'includes/form_errors.html' %}        
-            <form method="post" action="{% if form.instance.pk %}{% url 'posts:post_edit' form.instance.pk %}
+            {% include 'includes/form_errors.html' %}  
+            <form method="post" enctype="multipart/form-data" action="{% if form.instance.pk %}{% url 'posts:post_edit' form.instance.pk %}
             {% else %}{% url 'posts:post_create' %}{% endif %}">
-            {% csrf_token %}            
+            {% csrf_token %}
               {% include 'includes/iter_form.html' %}
               <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary">
@@ -30,7 +30,7 @@
                     Сохранить
                   {% else %}
                     Добавить
-                  {% endif %}   
+                  {% endif %}
                 </button>
               </div>
             </form>
@@ -38,5 +38,5 @@
         </div>
       </div>
     </div>
-  </div>   
+  </div>
 {% endblock %}

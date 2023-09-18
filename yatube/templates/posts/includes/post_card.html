@@ -1,4 +1,4 @@
-
+  {% load thumbnail %}
   <article>
     <ul>
       <li>
@@ -25,6 +25,10 @@
               <a href="{% url 'posts:group_list' post.group.slug %}">
                 Все записи группы, {{ post.group.slug }}</a>
             </li>
+            {% thumbnail post.image "450x270" crop="center" as im %}
+              <img src="{{ im.url }}" widt="{{ im.width }}" height="{{ im.height }}">
+            {% endthumbnail %} 
+            
           {% endif %}
         {% endif %}     
     </ul>
